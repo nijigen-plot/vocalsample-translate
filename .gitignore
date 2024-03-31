@@ -1,0 +1,20 @@
+# python generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# venv
+.venv
+
+# env
+.env
+
+# requirements
+requirements-dev.lock
+requirements.lock
+
+# rye
+__init__.py
