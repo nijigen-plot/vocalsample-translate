@@ -1,0 +1,31 @@
+[project]
+name = "vocalsample-translate"
+version = "0.1.0"
+description = "Add your description here"
+authors = [
+    { name = "nijigen-plot", email = "quark_hardcore@yahoo.co.jp" }
+]
+dependencies = [
+    "langchain>=0.1.13",
+    "streamlit>=1.32.2",
+    "openai>=1.14.3",
+    "langchain-openai>=0.1.1",
+    "python-dotenv>=1.0.1",
+    "pydantic>=2.6.4",
+]
+readme = "README.md"
+requires-python = ">= 3.11"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev-dependencies = []
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/vocalsample_translate"]
