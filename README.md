@@ -1,3 +1,5 @@
 # vocalsample-translate
 
-Describe your project here.
+```
+rye run streamlit run app.py --server.port xxxx
+```
