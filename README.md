@@ -1,5 +1,5 @@
 # vocalsample-translate
 
 ```
-rye run streamlit run app.py --server.port xxxx
+nohup rye run streamlit run app.py --server.port 8088
 ```
