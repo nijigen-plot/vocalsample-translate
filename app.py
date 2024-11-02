@@ -18,19 +18,6 @@ if not API_KEY:
 
 client = OpenAI(api_key=API_KEY)
 
-# GA4の測定ID
-ga_measurement_id = 'G-WH6S6PRFNC'
-ga_script = f"""
-<script async src="https://www.googletagmanager.com/gtag/js?id={ga_measurement_id}"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){{dataLayer.push(arguments);}}
-  gtag('js', new Date());
-  gtag('config', '{ga_measurement_id}');
-</script>
-"""
-st.markdown(ga_script, unsafe_allow_html=True)
-
 st.title("声ネタ日本語翻訳BOT")
 st.subheader("何言ってるか分からない声ネタを日本語に翻訳！:sparkles:")
 st.caption(":blue[※アップロードされたファイルが活用されることはありません。]")
@@ -78,4 +65,6 @@ if uploaded_file is not None:
 
     except Exception as e:
         st.error(f"予期しないエラーが発生しました: {e}")
-        
+
+st.components.v1.iframe('https://quark-hardcore.com/vocalsample-translate-ga4.html', height=1, scrolling=False)
+
