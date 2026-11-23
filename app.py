@@ -5,11 +5,9 @@ from openai import OpenAI
 import openai
 from dotenv import load_dotenv
 from io import BytesIO
-from langchain.prompts import (ChatPromptTemplate, HumanMessagePromptTemplate, SystemMessagePromptTemplate)
-from langchain_openai import ChatOpenAI
 
 
-load_dotenv()
+load_dotenv(override=True)
 API_KEY = os.getenv('OPENAI_API_KEY')
 
 if not API_KEY:
@@ -47,18 +45,16 @@ if uploaded_file is not None:
                 st.stop()
             
             if transcript.text:
-                chat_prompt = ChatPromptTemplate.from_messages([
-                    SystemMessagePromptTemplate.from_template("今から入力される歌詞を日本語に翻訳してください。返事を返す際は、翻訳後の歌詞だけ返してください。"),
-                    HumanMessagePromptTemplate.from_template(f"{transcript.text}")
-                    ])
-                llm = ChatOpenAI(model="gpt-3.5-turbo", openai_api_key=API_KEY)
-                messages = chat_prompt.format_prompt(option=transcript.text).to_messages()
-                response = llm.invoke(
-                    messages
+                response = client.chat.completions.create(
+                    model="gpt-6.1-sol",
+                    messages=[
+                        {"role": "system", "content": "今から入力される歌詞を日本語に翻訳してください。返事を返す際は、翻訳後の歌詞だけ返してください。"},
+                        {"role": "user", "content": transcript.text},
+                    ],
                 )
                 st.audio(bytes_data)
                 with st.chat_message("assistant"):
-                        result = f"原文: {transcript.text}  \n\n翻訳: {response.content}"
+                        result = f"原文: {transcript.text}  \n\n翻訳: {response.choices[0].message.content}"
                         st.markdown(result)                
             else:
                 st.error("歌詞が読み取れませんでした。ボーカルのない音源かもしれません。")
