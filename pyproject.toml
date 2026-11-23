@@ -6,10 +6,8 @@ authors = [
     { name = "nijigen-plot", email = "quark_hardcore@yahoo.co.jp" }
 ]
 dependencies = [
-    "langchain>=0.1.13",
     "streamlit>=1.32.2",
     "openai>=1.14.3",
-    "langchain-openai>=0.1.1",
     "python-dotenv>=1.0.1",
     "pydantic>=2.6.4",
 ]
